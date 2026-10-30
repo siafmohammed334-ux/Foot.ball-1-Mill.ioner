@@ -29,8 +29,8 @@ jobs:
         with: { distribution: temurin, java-version: 17 }
       - name: Build debug APK
         run: |
-          [ -d android ] || { echo "no android folder in repo"; exit 1; }
           npm install
+          [ -d android ] || npx cap add android
           npx cap sync android
           cd android && chmod +x gradlew && ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
